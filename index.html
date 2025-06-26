@@ -20,13 +20,13 @@
   <body>
     <canvas id="unity-canvas"></canvas>
     <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/AnchorCasinoFishing.data",
-        frameworkUrl: "Build/AnchorCasinoFishing.framework.js",
-        codeUrl: "Build/AnchorCasinoFishing.wasm",
-      }).catch((err) => {
-        console.error("Unity failed to load:", err);
-      });
-    </script>
-  </body>
-</html>
+  createUnityInstance(document.querySelector("#unity-canvas"), {
+    dataUrl: "Build/AnchorCasinoFishing.data",
+    frameworkUrl: "Build/AnchorCasinoFishing.framework.js",
+    codeUrl: "Build/AnchorCasinoFishing.wasm",
+  }).then((unityInstance) => {
+    console.log("Unity loaded!");
+  }).catch((message) => {
+    alert(message);
+  });
+</script>
