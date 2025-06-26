@@ -1,2 +1,1 @@
-// loader placeholder
-console.log("Loader JS file placeholder");
+// Unity loader JS (placeholder)
