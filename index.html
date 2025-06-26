@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Anchor Casino</title>
-    <script src="Build/AnchorCasinoFishing.loader.js"></script>
+    <meta charset="utf-8" />
+    <title>Anchor Casino Fishing</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-      }
-      canvas {
-        width: 100vw;
-        height: 100vh;
-        display: block;
-      }
+      html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+      canvas { display: block; }
     </style>
   </head>
   <body>
-    <canvas id="unity-canvas"></canvas>
     <script>
-  createUnityInstance(document.querySelector("#unity-canvas"), {
-    dataUrl: "Build/AnchorCasinoFishing.data",
-    frameworkUrl: "Build/AnchorCasinoFishing.framework.js",
-    codeUrl: "Build/AnchorCasinoFishing.wasm",
-  }).then((unityInstance) => {
-    console.log("Unity loaded!");
-  }).catch((message) => {
-    alert(message);
-  });
-</script>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/AnchorCasinoFishing.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/AnchorCasinoFishing.data",
+        frameworkUrl: buildUrl + "/AnchorCasinoFishing.framework.js",
+        codeUrl: buildUrl + "/AnchorCasinoFishing.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Anchor",
+        productName: "Anchor Casino Fishing",
+        productVersion: "1.0",
+      };
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(document.body, config).catch((err) => {
+          console.error(err);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
